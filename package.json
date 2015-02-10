@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "castv2-client": "0.0.8",
+    "castv2-youtube": "0.0.2",
     "express": "^4.11.2",
     "jade": "^1.9.2",
     "mdns": "^2.2.4",
