@@ -6,10 +6,40 @@ html
 
     link(rel='apple-touch-icon', href='/img/touch-icon.png')
     link(rel='stylesheet', href='/app.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
 
     script(src='/socket.io/socket.io.js')
     script(src='//code.jquery.com/jquery-1.11.2.min.js')
     script(src='/app.js')
 
     body
-      a(href='#') Play
+      .container
+        .module
+          h2.title TVs
+          ul
+            li
+              i.fa.fa-link
+              span First floor, stage
+              select
+                option(value='12353114') Joe's Youtube Playlist
+                option(value='12353114') Joe's Youtube Playlist
+                option(value='12353114') Joe's Youtube Playlist
+            li
+              i.fa.fa-unlink
+              span Second floor, kegs
+              select
+                option(value='12353114') Joe's Youtube Playlist
+        .module
+          h2.title Channels
+          ul
+            li
+              span Moonshot YouTube Channel
+              a.fa.fa-ban
+            li
+              span Moonshot YouTube Channel
+              a.fa.fa-ban
+          footer
+            input(type='text', name='add-channel')
+            a.add-channel.button(href='#') Add Channel
+            p paste in a YouTube playlist URL, it looks like this
+              span.url https://www.youtube.com/playlist?list=PLDrWwcNG3AGJASxw7-tHQ92S8aJrDW2IT

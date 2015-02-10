@@ -1,3 +1,110 @@
-html, body{
-  font-family: Helvetica, Arial;
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+
+/* reset some stuff */
+h2, ul, li{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+a{
+  color: white;
+  text-decoration: none;
+}
+input{
+  background-color: #50597b;
+  padding: 10px;
+  border: 1px solid #1a4e95;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 100%;
+  border-radius: 3px;
+}
+h2{
+  font-size: 150%;
+}
+select{
+  background-color: #50597b;
+  border: none;
+  color: white;
+  font-size: 90%;
+  -webkit-appearance: none;
+  padding: 10px;
+}
+
+
+
+body{
+  background-color: #1f253d;
+  font-family: 'Ubuntu', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  max-width: 700px;
+  margin: auto;
+}
+
+
+
+.module{
+  background-color: #394264;
+  border-radius: 3px;
+  margin-top: 50px;
+}
+.module .title{
+  background-color: #11a8ab;
+  padding: 20px;
+  text-align: center;
+  border-radius: 3px 3px 0 0;
+}
+.module li{
+  border-bottom: 1px solid #1f253d;
+  padding: 20px;
+  overflow: hidden;
+}
+.module .fa{
+  opacity: .5;
+  margin-right: 20px;
+  font-size: 120%;
+  padding: 10px;
+}
+.module .fa.fa-unlink, .module .fa.fa-ban{
+  background-color: #e64c65;
+  opacity: 1;
+  border-radius: 20px;
+}
+.module select{
+  float: right;
+}
+.fa.fa-ban{
+  float : right;
+}
+footer{
+  background-color: #3468af;
+  padding: 10px;
+  overflow: hidden;
+}
+footer input{
+  margin-right: 10px;
+}
+footer p{
+  float: right;
+  opacity: .75;
+  width: 50%;
+  margin: 0;
+  font-size: 85%;
+  line-height: 150%;
+}
+.button{
+  background-color: #4fc4f6;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #1a4e95;
+}
+span.url{
+  font-style: italic;
+  display: block;
+  font-size: 90%;
+  padding-top: 5px;
 }
