@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
 
-/* reset some stuff */
-h2, ul, li{
+
+h1, h2, h3, h4, h5, h6, ul, li, p{
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -17,18 +17,24 @@ input{
   color: white;
   font-family: 'Ubuntu', sans-serif;
   font-size: 100%;
-  border-radius: 3px;
-}
-h2{
-  font-size: 150%;
+  border-radius: 2px;
 }
 select{
   background-color: #50597b;
-  border: none;
+  border: 1px solid #293152;
   color: white;
   font-size: 90%;
   -webkit-appearance: none;
   padding: 10px;
+  padding-right:35px;
+  content: "\f219";
+  border-radius: 3px;
+}
+.button{
+  background-color: #4fc4f6;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #1a4e95;
 }
 
 
@@ -43,6 +49,7 @@ body{
 .container{
   max-width: 700px;
   margin: auto;
+  padding-bottom: 100px;
 }
 
 
@@ -52,20 +59,26 @@ body{
   border-radius: 3px;
   margin-top: 50px;
 }
-.module .title{
+.module header{
   background-color: #11a8ab;
   padding: 20px;
   text-align: center;
   border-radius: 3px 3px 0 0;
 }
-.module li{
+
+.module li.chromecast-details, .module li.channel-details{
   border-bottom: 1px solid #1f253d;
-  padding: 20px;
+  padding: 20px 10px;
   overflow: hidden;
+}
+
+.module .connection-status{
+  display: inline-block;
+  float: left;
+  padding-right: 20px;
 }
 .module .fa{
   opacity: .5;
-  margin-right: 20px;
   font-size: 120%;
   padding: 10px;
 }
@@ -73,36 +86,79 @@ body{
   background-color: #e64c65;
   opacity: 1;
   border-radius: 20px;
+  font-size: 90%;
 }
 .module select{
   float: right;
 }
-.fa.fa-ban{
+
+
+.meta{
+  float: left;
+}
+.meta li{
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+.meta li.chromecast-name, .meta li.channel-name{
+  font-size: 120%;
+  padding-bottom: 15px;
+  font-weight: bold;
+}
+.meta .key{
+  opacity: .7;
+  width: 60px;
+  display: inline-block;
+  font-size: 70%;
+  float: left;
+  padding-top: 3px;
+}
+.meta .value{
+  font-size: 80%;
+  width: 75%;
+  float: left;
+  line-height: 145%;
+}
+.tvs .meta{
+  width: 60%;
+}
+.channels .meta{
+  padding-left: 10px;
+  width: 85%;
+}
+.channels .meta .key{
+  width: 80px;
+}
+a.delete{
   float : right;
 }
+
+
 footer{
-  background-color: #3468af;
+  background-color: #50597b;
   padding: 10px;
   overflow: hidden;
 }
+footer .button{
+  display: inline-block;
+  margin-top: 10px;
+}
 footer input{
-  margin-right: 10px;
+  background-color: #394264;
+  border: 1px solid #262E4D;
+  display: block;
+  width: 95.6%;
+  padding: 2%;
 }
 footer p{
   float: right;
   opacity: .75;
-  width: 50%;
-  margin: 0;
+  margin-top: 8px;
+  padding-right: 5px;
   font-size: 85%;
   line-height: 150%;
 }
-.button{
-  background-color: #4fc4f6;
-  padding: 10px;
-  border-radius: 3px;
-  border: 1px solid #1a4e95;
-}
-span.url{
+footer span.url{
   font-style: italic;
   display: block;
   font-size: 90%;
