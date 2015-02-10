@@ -16,10 +16,17 @@ server.listen(port, function(){
 
 
 
+// some routes and stuff
+app.get('/', function(req ,res){
+  res.render('index');
+});
+
+
+
 // create chromecasts
 var chromecasts = require('./lib/chromecasts')();
 chromecasts.on('media-stopped', function(){
-  
+
 });
 
 
