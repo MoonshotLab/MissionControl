@@ -1,10 +1,12 @@
 var socket = io();
 
 $(function(){
-  $('a').click(function(){
-    socket.emit('play-channel', {
-      channelId     : 1,
-      chromecastIds : ['7d4d252eef4e84dce64037d5103e99da']
-    });
+
+  $('#add-channel').click(function(){
+    var inputVal = $('#channel-input').val();
+    if(inputVal.indexOf('youtube.com/playlist') == -1)
+      alert('That\'s not a youtube playlist dood');
+    else
+      socket.emit('add-channel', { url : inputVal });
   });
 });

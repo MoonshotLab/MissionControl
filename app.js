@@ -23,6 +23,11 @@ app.get('/', function(req ,res){
 
 
 
+// reference channels
+var channels = require('./lib/channels');
+
+
+
 // create chromecasts
 var chromecasts = require('./lib/chromecasts');
 chromecasts.init();
@@ -34,6 +39,13 @@ chromecasts.getEmitter().on('media-stopped', function(){
 // create sockets
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
+
+  // { url : 'https://someyoutubeplaylist' }
+  socket.on('add-channel', function(opts){
+    channels.create(opts.url).then(function(channel){
+      socket.broadcast.emit('new-channel', channel);
+    });
+  });
 
   // { channelId : 123, chromecastIds : [123, 456, 789] }
   socket.on('play-channel', function(opts){
