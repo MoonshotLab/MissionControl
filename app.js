@@ -24,8 +24,9 @@ app.get('/', function(req ,res){
 
 
 // create chromecasts
-var chromecasts = require('./lib/chromecasts')();
-chromecasts.on('media-stopped', function(){
+var chromecasts = require('./lib/chromecasts');
+chromecasts.init();
+chromecasts.getEmitter().on('media-stopped', function(){
 
 });
 
@@ -37,6 +38,6 @@ io.on('connection', function(socket){
   // { channelId : 123, chromecastIds : [123, 456, 789] }
   socket.on('play-channel', function(opts){
     chromecasts.play(opts);
-    socket.broadcast.emit('play-channel', opts);
+    // socket.broadcast.emit('play-channel', opts);
   });
 });
