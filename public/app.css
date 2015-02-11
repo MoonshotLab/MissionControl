@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+@import url(http://fonts.googleapis.com/css?family=Lora);
 
 
 h1, h2, h3, h4, h5, h6, ul, li, p{
@@ -70,6 +71,7 @@ body{
   border-bottom: 1px solid #1f253d;
   padding: 20px 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .module .connection-status{
@@ -88,8 +90,16 @@ body{
   border-radius: 20px;
   font-size: 90%;
 }
-.module select{
+.module .channel-station{
+  width: 30%;
   float: right;
+  color: #A0ACD9;
+  font-size: 85%;
+  line-height: 140%;
+}
+.module .channel-station .channel{
+  font-weight: bold;
+  color: white;
 }
 
 
@@ -112,6 +122,7 @@ body{
   font-size: 70%;
   float: left;
   padding-top: 3px;
+  font-family: 'Lora', Helvetica;
 }
 .meta .value{
   font-size: 80%;
@@ -163,4 +174,41 @@ footer span.url{
   display: block;
   font-size: 90%;
   padding-top: 5px;
+}
+
+
+#channel-selector{
+  z-index: 2;
+  position: absolute;
+  background-color: #394264;
+  border-radius: 3px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+}
+#channel-selector header{
+  border-radius: 3px 3px 0 0;
+  background-color: #11a8ab;
+  padding: 10px;
+  text-align: center;
+}
+#channel-selector header h2{
+  font-size: 100%;
+  white-space: nowrap;
+}
+#channel-selector header .close{
+  font-size: 60%;
+  line-height: 0;
+  background-color: #e64c65;
+  border-radius: 20px;
+  padding: 14px 10px;
+  float: right;
+  margin: -5px -5px 0 140px;
+}
+#channel-selector li a{
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #1f253d;
+  font-size: 90%;
+}
+#channel-selector li a:hover{
+  background-color: #50597b;
 }

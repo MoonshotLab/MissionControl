@@ -30,3 +30,22 @@ templates.channelDetails = _.template([
     '</div>',
   '</li>'
 ].join(''));
+
+
+templates.channelSelector = _.template([
+  '<div id="channel-selector">',
+    '<header>',
+      '<a class="close fa fa-times" href="#"></a>',
+      '<h2>Select Channel</h2>',
+    '</header>',
+    '<ul>',
+      '<% _.each(channels, function(channel){ %>',
+        '<li>',
+          '<a href="#" class="channel" data-channel-id="<%= channel._id %>">',
+            '<%= channel.title %>',
+          '</a>',
+        '</li>',
+      '<% }); %>',
+    '</ul>',
+  '</div>'
+].join(''));

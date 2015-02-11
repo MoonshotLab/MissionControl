@@ -10,9 +10,8 @@ block content
         h1 TVs
       ul
         li.chromecast-details
-          select.channel-selector
-            option(value='12353114') Awesome to the Max
-            option(value='12353114') Moonshot
+          .channel-station
+            p Tuned into <a class='channel' data-chromecast-id="123" href='#'>Awesome to the Max</a>
           .connection-status
             i.fa.fa-link
           .meta
@@ -26,9 +25,8 @@ block content
                 span.value Rockwell Retro Encabulator
 
         li.chromecast-details
-          select.channel-selector
-            option(value='12353114') Moonshot
-            option(value='12353114') Awesome to the Max
+          .channel-station
+            p Tuned into <a class='channel' href='#'>Moonshot</a>
           .connection-status
             i.fa.fa-unlink
           .meta

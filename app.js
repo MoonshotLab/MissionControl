@@ -61,9 +61,9 @@ io.on('connection', function(socket){
     });
   });
 
-  // { channelId : 123, chromecastIds : [123, 456, 789] }
-  socket.on('play-channel', function(opts){
-    chromecasts.play(opts);
-    // socket.broadcast.emit('play-channel', opts);
+  // { channelId : 123, chromecastId : 123 }
+  socket.on('change-channel', function(opts){
+    chromecasts.startChannel(opts);
+    io.sockets.emit('change-channel', opts);
   });
 });
