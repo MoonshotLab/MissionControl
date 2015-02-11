@@ -21,6 +21,14 @@ app.get('/', function(req ,res){
   res.render('index');
 });
 
+app.get('/channels', function(req ,res){
+  res.render('channels');
+});
+
+app.get('/tvs', function(req ,res){
+  res.render('tvs');
+});
+
 
 app.get('/api/channels', function(req, res){
   channels.getAll().then(function(channels){

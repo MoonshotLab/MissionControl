@@ -1,0 +1,44 @@
+extends _layout
+
+block head
+  script(src='/tvs.js')
+
+block content
+  .container
+    .module.tvs
+      header
+        h1 TVs
+      ul
+        li.chromecast-details
+          select.channel-selector
+            option(value='12353114') Awesome to the Max
+            option(value='12353114') Moonshot
+          .connection-status
+            i.fa.fa-link
+          .meta
+            ul
+              li.chromecast-name First Floor Stage
+              li.now-playing
+                span.key Now
+                span.value Gangnam Style
+              li.up-next
+                span.key On Deck
+                span.value Rockwell Retro Encabulator
+
+        li.chromecast-details
+          select.channel-selector
+            option(value='12353114') Moonshot
+            option(value='12353114') Awesome to the Max
+          .connection-status
+            i.fa.fa-unlink
+          .meta
+            ul
+              li.chromecast-name Speed Dating
+              li.now-playing
+                span.key Now
+                span.value The First Honest Cable Company
+              li.up-next
+                span.key On Deck
+                span.value Brewing TV - Episode 67: How to Make Hard Cider
+
+    

@@ -1,0 +1,17 @@
+extends _layout
+
+block head
+  script(src='/channels.js')
+
+block content
+  .container
+    .module.channels
+      header
+        h1 Channels
+      ul#channel-list
+
+      footer
+        input#channel-input(type='text', name='add-channel', placeholder='https://www.youtube.com/playlist?list=PLDrWwcNG3AGJASxw7-tHQ92S8aJrDW2IT')
+        p paste in a YouTube playlist URL, it should look like this:
+          span.url https://www.youtube.com/playlist?list=PLDrWwcNG3AGJASxw7-tHQ92S8aJrDW2IT
+        a#add-channel.button(href='#') Add Channel
