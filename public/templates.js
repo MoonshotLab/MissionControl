@@ -49,3 +49,35 @@ templates.channelSelector = _.template([
     '</ul>',
   '</div>'
 ].join(''));
+
+
+templates.tvDetails = _.template([
+  '<li class="chromecast-details" id="chromecast-<%= id %>">',
+    '<div class="channel-station">',
+      '<a class="channel" data-chromecast-id="<%= id %>">',
+        'Tuned into ',
+        '<span class="title">',
+          "<%= channel.title %>",
+        '</span>',
+      '</a>',
+    '</div>',
+    '<div class="connection-status">',
+      '<i class="fa fa-link" />',
+    '</div>',
+    '<div class="meta">',
+      '<ul>',
+        '<li class="chromecast-name">',
+          '<%= name %>',
+        '</li>',
+        '<li class="now-playing">',
+          '<span class="key">Now Playing</span>',
+          '<span class="value">',
+            '<% if(channel.videos){ %>',
+              '<%= channel.videos[videoIndex] %>',
+            '<% } %>',
+          '</span>',
+        '</li>',
+      '</ul>',
+    '</div>',
+  '</li>'
+].join(''));

@@ -20,17 +20,6 @@ input{
   font-size: 100%;
   border-radius: 2px;
 }
-select{
-  background-color: #50597b;
-  border: 1px solid #293152;
-  color: white;
-  font-size: 90%;
-  -webkit-appearance: none;
-  padding: 10px;
-  padding-right:35px;
-  content: "\f219";
-  border-radius: 3px;
-}
 .button{
   background-color: #4fc4f6;
   padding: 10px;
@@ -97,7 +86,7 @@ body{
   font-size: 85%;
   line-height: 140%;
 }
-.module .channel-station .channel{
+.module .channel-station span{
   font-weight: bold;
   color: white;
 }

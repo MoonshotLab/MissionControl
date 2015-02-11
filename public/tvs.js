@@ -2,25 +2,23 @@ var channels = [];
 
 $(function(){
 
+  // fetch chromecasts on page load
+  $.ajax({
+    url : '/api/chromecasts',
+  }).done(function(chromecasts){
+    chromecasts.forEach(function(chromecast){
+      $('#chromecast-list').append(
+        templates.tvDetails(chromecast)
+      );
+      attachTvEvents(chromecast.id);
+    });
+  });
+
   // fetch channels on page load
   $.ajax({
     url : '/api/channels',
   }).done(function(data){
     channels = data;
-  });
-
-  // attach events, remove old channel selectors
-  $('a.channel').click(function(e){
-    e.preventDefault();
-    $('#channel-selector').remove();
-
-    var chromeCastId = $(this).data('chromecast-id');
-    $('body').append(templates.channelSelector(channels));
-    attachChannelSelectorEvents(chromeCastId);
-    $('#channel-selector').css({
-      top : e.clientY,
-      left : e.clientX
-    });
   });
 });
 
@@ -53,6 +51,23 @@ socket.on('chromecast-status-update', function(data){
 socket.on('error', function(err){
   console.error(err);
 });
+
+
+var attachTvEvents = function(chromecastId){
+  $('#chromecast-' + chromecastId).find('a.channel').click(function(e){
+    e.preventDefault();
+    $('#channel-selector').remove();
+
+    var chromeCastId = $(this).data('chromecast-id');
+    $('body').append(templates.channelSelector(channels));
+    attachChannelSelectorEvents(chromeCastId);
+    $('#channel-selector').css({
+      top : e.clientY,
+      left : e.clientX
+    });
+  });
+};
+
 
 var attachChannelSelectorEvents = function(chromecastId){
   var $selector = $('#channel-selector');
