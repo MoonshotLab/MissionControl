@@ -129,7 +129,7 @@ body{
 .channels .meta .key{
   width: 80px;
 }
-a.delete{
+a.delete-channel{
   float : right;
 }
 

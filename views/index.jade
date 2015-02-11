@@ -9,7 +9,9 @@ html
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
 
     script(src='/socket.io/socket.io.js')
+    script(src='http://underscorejs.org/underscore-min.js')
     script(src='//code.jquery.com/jquery-1.11.2.min.js')
+    script(src='/templates.js')
     script(src='/app.js')
 
     body
@@ -54,30 +56,7 @@ html
         .module.channels
           header
             h1 Channels
-          ul
-            li.channel-details
-              a.fa.fa-ban.delete(href='#')
-              .meta
-                ul
-                  li.channel-name Awesome to the Max
-                  li.created-by
-                    span.key Created By
-                    span.value Joe Longstreet
-                  li.videos
-                    span.key Videos
-                    span.value Gangnam Style, Rockwell Retro Encabulator
-
-            li.channel-details
-              a.fa.fa-ban.delete(href='#')
-              .meta
-                ul
-                  li.channel-name Moonshot
-                  li.created-by
-                    span.key Created By
-                    span.value Ricky Catto
-                  li.videos
-                    span.key Videos
-                    span.value The First Honest Cable Company, Brewing TV - Episode 67: How to Make Hard Cider, Gangnam Style, Rockwell Retro Encabulator
+          ul#channel-list
 
           footer
             input#channel-input(type='text', name='add-channel', placeholder='https://www.youtube.com/playlist?list=PLDrWwcNG3AGJASxw7-tHQ92S8aJrDW2IT')

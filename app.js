@@ -22,28 +22,34 @@ app.get('/', function(req ,res){
 });
 
 
-
-// reference channels
-var channels = require('./lib/channels');
-
-
-
-// create chromecasts
-var chromecasts = require('./lib/chromecasts');
-chromecasts.init();
-chromecasts.getEmitter().on('media-stopped', function(){
-
+app.get('/api/channels', function(req, res){
+  channels.getAll().then(function(channels){
+    res.send(channels);
+  });
 });
 
 
-// create sockets
+
+// create a controlling device the web interface can use
+// to manipulate the chromecasts
+var channels = require('./lib/channels');
+var chromecasts = require('./lib/chromecasts');
+chromecasts.init();
 var io = require('socket.io')(server);
+
 io.on('connection', function(socket){
 
   // { url : 'https://someyoutubeplaylist' }
   socket.on('add-channel', function(opts){
     channels.create(opts.url).then(function(channel){
-      socket.broadcast.emit('new-channel', channel);
+      io.sockets.emit('new-channel', channel);
+    });
+  });
+
+  // { id : '54da8afad27c5b3e0b467617' }
+  socket.on('destroy-channel', function(opts){
+    channels.destroy(opts.id).then(function(channelId){
+      io.sockets.emit('removed-channel', { _id : channelId });
     });
   });
 
