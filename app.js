@@ -30,10 +30,15 @@ app.get('/tvs', function(req ,res){
 });
 
 
+// api
 app.get('/api/channels', function(req, res){
   channels.getAll().then(function(channels){
     res.send(channels);
   });
+});
+
+app.get('/api/chromecasts', function(req, res){
+  res.send(chromecasts.getAll());
 });
 
 
