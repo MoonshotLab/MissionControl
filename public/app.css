@@ -112,12 +112,12 @@ body{
 }
 .meta li.chromecast-name, .meta li.channel-name{
   font-size: 120%;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
   font-weight: bold;
 }
 .meta .key{
   opacity: .7;
-  width: 60px;
+  padding-right: 20px;
   display: inline-block;
   font-size: 70%;
   float: left;
@@ -138,7 +138,7 @@ body{
   width: 85%;
 }
 .channels .meta .key{
-  width: 80px;
+  width: 70px;
 }
 a.delete-channel{
   float : right;

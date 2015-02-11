@@ -39,6 +39,21 @@ socket.on('removed-channel', function(channel){
 });
 
 
+// listen for changes on the chromecast, like buffering and
+// new media
+socket.on('chromecast-status-update', function(data){
+  if(data.status.media && data.status.media.metadata){
+    $('#chromecast-' + data.chromecastId)
+      .find('.now-playing').find('.value')
+      .text(data.status.media.metadata.title);
+  }
+});
+
+// just dump errors
+socket.on('error', function(err){
+  console.error(err);
+});
+
 var attachChannelSelectorEvents = function(chromecastId){
   var $selector = $('#channel-selector');
 

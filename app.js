@@ -38,13 +38,24 @@ app.get('/api/channels', function(req, res){
 
 
 
-// create a controlling device the web interface can use
-// to manipulate the chromecasts
+
 var channels = require('./lib/channels');
 var chromecasts = require('./lib/chromecasts');
 chromecasts.init();
 var io = require('socket.io')(server);
 
+
+// message from the chromecasts back down to the interface
+chromecasts.getEmitter().on('status-update', function(data){
+  io.sockets.emit('chromecast-status-update', data);
+});
+chromecasts.getEmitter().on('error', function(err){
+  io.sockets.emit('error', err);
+});
+
+
+// create a controlling device the web interface can use
+// to manipulate the chromecasts
 io.on('connection', function(socket){
 
   // { url : 'https://someyoutubeplaylist' }
