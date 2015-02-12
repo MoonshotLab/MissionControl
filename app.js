@@ -18,7 +18,7 @@ server.listen(port, function(){
 
 // some routes and stuff
 app.get('/', function(req ,res){
-  res.render('index');
+  res.render('tvs');
 });
 
 app.get('/channels', function(req ,res){
