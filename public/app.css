@@ -15,8 +15,7 @@ h1, h2, h3, h4, h5, h6, ul, li, p{
   padding: 0;
 }
 a{
-  color: white;
-  text-decoration: none;
+  color: #4fc4f6;
 }
 input{
   background-color: #394264;
@@ -44,6 +43,8 @@ input{
   padding: 10px;
   border-radius: 3px;
   border: 1px solid #1a4e95;
+  text-decoration: none;
+  color: white;
 }
 nav{
   border-radius: 0 0 3px 3px;
@@ -58,6 +59,8 @@ nav li{
 nav li a{
   display: block;
   padding: 8px 15px;
+  color: white;
+  text-decoration: none;
 }
 
 
@@ -85,6 +88,10 @@ nav li a{
   padding: 20px 10px;
   overflow: hidden;
   position: relative;
+}
+.module li.details a{
+  color: white;
+  text-decoration: none;
 }
 .module li.details i.fa{
   font-size: 120%;
@@ -157,16 +164,16 @@ nav li a{
   padding: 2%;
 }
 .module.channels footer .button{
-  display: inline-block;
+  float: left;
   margin-top: 10px;
+  margin-right: 10px;
 }
 .module.channels footer p{
-  float: right;
   opacity: .75;
   margin-top: 8px;
   padding-right: 5px;
   font-size: 85%;
-  line-height: 150%;
+  line-height: 170%;
 }
 .module.channels footer span.url{
   font-style: italic;
