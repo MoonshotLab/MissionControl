@@ -45,6 +45,15 @@ var addChromecast = function(chromecast){
       y             : e.clientY
     });
   });
+
+  $('#chromecast-' + chromecast.id)
+    .find('.controls').find('li').click(function(e){
+      var directive = $(this).data('directive');
+      socket.emit('chromecast-control', {
+        chromecastId  : chromecast.id,
+        directive     : directive
+      });
+  });
 };
 
 

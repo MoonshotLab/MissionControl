@@ -137,9 +137,8 @@ nav li a{
 
 /* Chromecast Module */
 .module.chromecasts .connection-status{
-  display: inline-block;
   float: left;
-  padding-right: 20px;
+  margin-right: 20px;
 }
 .module.chromecasts li.details i.fa{
   opacity: .5;
@@ -149,6 +148,13 @@ nav li a{
   float: right;
   font-size: 85%;
   line-height: 140%;
+  cursor: pointer;
+}
+.module.chromecasts h2 {
+  font-size: 120%;
+}
+.module.chromecasts .info{
+  overflow: hidden;
 }
 .module.chromecasts .channel a{
   color: #A0ACD9;
@@ -158,6 +164,19 @@ nav li a{
 }
 .module.chromecasts .meta{
   width: 60%;
+}
+.module.chromecasts .controls{
+  margin-left: 59px;
+  margin-top: 10px;
+}
+.module.chromecasts .controls li{
+  display: inline-block;
+  margin-right: 30px;
+  font-size: 90%;
+  opacity: .8;
+}
+.module.chromecasts .controls li:hover{
+  opacity: 1;
 }
 
 

@@ -79,12 +79,20 @@ io.on('connection', function(socket){
 
   // { channelId : 123, chromecastId : 123 }
   socket.on('change-channel', function(opts){
-    chromecasts.startChannel(opts);
+    var chromecast = chromecasts.getById(opts.chromecastId);
+    chromecast.startChannel(opts.channelId);
+
     channels.lookup(opts.channelId).then(function(channel){
       io.sockets.emit('change-channel', {
         chromecastId  : opts.chromecastId,
         channel       : channel
       });
     });
+  });
+
+  // { chromecastId : 123, directive : 'play' || 'pause' || 'next' || 'prev'}
+  socket.on('chromecast-control', function(opts){
+    var chromecast = chromecasts.getById(opts.chromecastId);
+    chromecast.control(opts.directive);
   });
 });
