@@ -71,6 +71,12 @@ socket.on('new-channel', function(channel){
   channels.push(channel);
 });
 
+//
+socket.on('change-channel', function(data){
+  $('#chromecast-' + data.chromecastId).find('.channel')
+    .find('span.title').text(data.channel.title);
+});
+
 // listen for removed channels
 socket.on('removed-channel', function(channel){
   channels = _.without(

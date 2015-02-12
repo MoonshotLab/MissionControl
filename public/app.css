@@ -147,9 +147,14 @@ nav li a{
 .module.chromecasts .channel{
   width: 30%;
   float: right;
-  color: #A0ACD9;
   font-size: 85%;
   line-height: 140%;
+}
+.module.chromecasts .channel a{
+  color: #A0ACD9;
+}
+.module.chromecasts .channel span.title{
+  color: white;
 }
 .module.chromecasts .meta{
   width: 60%;
@@ -231,12 +236,16 @@ nav li a{
   padding: 14px 10px;
   float: right;
   margin: -5px -5px 0 140px;
+  color: white;
+  text-decoration: none;
 }
 #channel-selector li a{
   display: block;
   padding: 10px;
   border-bottom: 1px solid #1f253d;
   font-size: 90%;
+  color: white;
+  text-decoration: none;
 }
 #channel-selector li a:hover{
   background-color: #50597b;

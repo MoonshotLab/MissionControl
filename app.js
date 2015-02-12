@@ -80,6 +80,11 @@ io.on('connection', function(socket){
   // { channelId : 123, chromecastId : 123 }
   socket.on('change-channel', function(opts){
     chromecasts.startChannel(opts);
-    io.sockets.emit('change-channel', opts);
+    channels.lookup(opts.channelId).then(function(channel){
+      io.sockets.emit('change-channel', {
+        chromecastId  : opts.chromecastId,
+        channel       : channel
+      });
+    });
   });
 });
