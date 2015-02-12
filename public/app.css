@@ -2,6 +2,13 @@
 @import url(http://fonts.googleapis.com/css?family=Lora);
 
 
+body{
+  background-color: #1f253d;
+  font-family: 'Ubuntu', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
 h1, h2, h3, h4, h5, h6, ul, li, p{
   list-style-type: none;
   margin: 0;
@@ -12,13 +19,25 @@ a{
   text-decoration: none;
 }
 input{
-  background-color: #50597b;
+  background-color: #394264;
+  border: 1px solid #262E4D;
   padding: 10px;
-  border: 1px solid #1a4e95;
   color: white;
   font-family: 'Ubuntu', sans-serif;
   font-size: 100%;
   border-radius: 2px;
+}
+::-webkit-input-placeholder {
+  color: rgba(255,255,255,.1);
+}
+
+
+
+/* components */
+.container{
+  max-width: 700px;
+  margin: auto;
+  padding-bottom: 100px;
 }
 .button{
   background-color: #4fc4f6;
@@ -29,21 +48,7 @@ input{
 
 
 
-body{
-  background-color: #1f253d;
-  font-family: 'Ubuntu', sans-serif;
-  color: white;
-  margin: 0;
-  padding: 0;
-}
-.container{
-  max-width: 700px;
-  margin: auto;
-  padding-bottom: 100px;
-}
-
-
-
+/* module components */
 .module{
   background-color: #394264;
   border-radius: 3px;
@@ -55,36 +60,20 @@ body{
   text-align: center;
   border-radius: 3px 3px 0 0;
 }
-
-.module li.chromecast-details, .module li.channel-details{
+.module footer{
+  background-color: #50597b;
+  padding: 10px;
+  overflow: hidden;
+}
+.module li.details{
   border-bottom: 1px solid #1f253d;
   padding: 20px 10px;
   overflow: hidden;
   position: relative;
 }
-
-.module .connection-status{
-  display: inline-block;
-  float: left;
-  padding-right: 20px;
-}
-.module .fa{
-  opacity: .5;
+.module li.details i.fa{
   font-size: 120%;
   padding: 10px;
-}
-.module .fa.fa-unlink, .module .fa.fa-ban{
-  background-color: #e64c65;
-  opacity: 1;
-  border-radius: 20px;
-  font-size: 90%;
-}
-.module .channel-station{
-  width: 30%;
-  float: right;
-  color: #A0ACD9;
-  font-size: 85%;
-  line-height: 140%;
 }
 .module .channel-station span{
   font-weight: bold;
@@ -92,6 +81,8 @@ body{
 }
 
 
+
+/* module meta data */
 .meta{
   float: left;
 }
@@ -119,38 +110,42 @@ body{
   float: left;
   line-height: 145%;
 }
-.tvs .meta{
+
+
+
+/* Chromecast Module */
+.module.chromecasts .connection-status{
+  display: inline-block;
+  float: left;
+  padding-right: 20px;
+}
+.module.chromecasts li.details i.fa{
+  opacity: .5;
+}
+.module.chromecasts .channel{
+  width: 30%;
+  float: right;
+  color: #A0ACD9;
+  font-size: 85%;
+  line-height: 140%;
+}
+.module.chromecasts .meta{
   width: 60%;
 }
-.channels .meta{
-  padding-left: 10px;
-  width: 85%;
-}
-.channels .meta .key{
-  width: 70px;
-}
-a.delete-channel{
-  float : right;
-}
 
 
-footer{
-  background-color: #50597b;
-  padding: 10px;
-  overflow: hidden;
-}
-footer .button{
-  display: inline-block;
-  margin-top: 10px;
-}
-footer input{
-  background-color: #394264;
-  border: 1px solid #262E4D;
+
+/* Channels Module */
+.module.channels footer input{
   display: block;
   width: 95.6%;
   padding: 2%;
 }
-footer p{
+.module.channels footer .button{
+  display: inline-block;
+  margin-top: 10px;
+}
+.module.channels footer p{
   float: right;
   opacity: .75;
   margin-top: 8px;
@@ -158,14 +153,37 @@ footer p{
   font-size: 85%;
   line-height: 150%;
 }
-footer span.url{
+.module.channels footer span.url{
   font-style: italic;
   display: block;
   font-size: 90%;
   padding-top: 5px;
 }
+.module.channels a.delete-channel{
+  background-color: #e64c65;
+  opacity: 1;
+  border-radius: 20px;
+  font-size: 90%;
+}
+.module.channels li.details .delete{
+  display: block;
+  float: right;
+  padding: 10px;
+  background-color: #e64c65;
+  border-radius: 20px;
+  font-size: 90%;
+}
+.module.channels .meta{
+  padding-left: 10px;
+  width: 85%;
+}
+.module.channels .meta .key{
+  width: 70px;
+}
 
 
+
+/* custom select menu */
 #channel-selector{
   z-index: 2;
   position: absolute;

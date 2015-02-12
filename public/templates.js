@@ -1,8 +1,8 @@
 var templates = {};
 
 templates.channelDetails = _.template([
-  '<li class="channel-details" data-channel-id="<%= _id %>" id="channel-<%= _id %>">',
-    '<a class="fa fa-ban delete-channel" data-channel-id="<%= _id %>" href="#"></a>',
+  '<li class="details" data-channel-id="<%= _id %>" id="channel-<%= _id %>">',
+    '<a class="fa fa-ban delete" data-channel-id="<%= _id %>" href="#"></a>',
     '<div class="meta">',
       '<ul>',
         '<li class="channel-name">',
@@ -51,10 +51,10 @@ templates.channelSelector = _.template([
 ].join(''));
 
 
-templates.tvDetails = _.template([
-  '<li class="chromecast-details" id="chromecast-<%= id %>">',
-    '<div class="channel-station">',
-      '<a class="channel" data-chromecast-id="<%= id %>">',
+templates.chromecastDetails = _.template([
+  '<li class="details" data-chromecast-id="<%= id %>" id="chromecast-<%= id %>">',
+    '<div class="channel">',
+      '<a data-chromecast-id="<%= id %>">',
         'Tuned into ',
         '<span class="title">',
           "<%= channel.title %>",

@@ -1,4 +1,15 @@
-var socket = io();
+var createChannel = function(e){
+  if(e) e.preventDefault();
+
+  var inputVal = $('#channel-input').val();
+  if(inputVal.indexOf('youtube.com/playlist') == -1)
+    alert('That\'s not a youtube playlist dood');
+  else{
+    socket.emit('add-channel', { url : inputVal });
+    $('#channel-input').val('');
+  }
+};
+
 
 
 var addChannel = function(channel){
@@ -8,7 +19,7 @@ var addChannel = function(channel){
 
   // attach click events so we can destroy the channel
   $('#channel-' + channel._id)
-    .find('.delete-channel')
+    .find('.delete')
     .click(function(e){
       e.preventDefault();
 
@@ -17,27 +28,6 @@ var addChannel = function(channel){
     });
 };
 
-$(function(){
-
-  // fetch channels on page load
-  $.ajax({
-    url : '/api/channels',
-  }).done(function(data){
-    data.forEach(addChannel);
-  });
-
-
-  // add a new channel
-  $('#add-channel').click(function(e){
-    e.preventDefault();
-
-    var inputVal = $('#channel-input').val();
-    if(inputVal.indexOf('youtube.com/playlist') == -1)
-      alert('That\'s not a youtube playlist dood');
-    else
-      socket.emit('add-channel', { url : inputVal });
-  });
-});
 
 
 // listen for new channels
@@ -46,4 +36,22 @@ socket.on('new-channel', addChannel);
 // listen for removed channels
 socket.on('removed-channel', function(channel){
   $('#channel-' + channel._id).remove();
+});
+
+// just show errors i guess
+socket.on('error', function(err){
+  console.error(err);
+});
+
+
+
+$(function(){
+  // fetch channels on page load
+  $.ajax({ url : '/api/channels' })
+    .done(function(data){
+      data.forEach(addChannel);
+    });
+
+  // create a new channel
+  $('#create-channel').click(createChannel);
 });
