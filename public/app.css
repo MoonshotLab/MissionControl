@@ -191,6 +191,8 @@ nav li a{
   float: left;
   margin-top: 10px;
   margin-right: 10px;
+  position: relative;
+  z-index: 2;
 }
 .module.channels footer p{
   opacity: .75;
