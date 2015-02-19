@@ -5,9 +5,13 @@ block head
 
 block content
   .container
+    nav
+      li.active
+        a(href='/channels') Manage Channels
+      li
+        a(href='/tvs') Control TVs
+  .container
     .module.channels
-      header
-        h1 Manage Channels
       ul#channel-list
 
       footer

@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
 @import url(http://fonts.googleapis.com/css?family=Lora);
+@import url(http://fonts.googleapis.com/css?family=Roboto);
 
 
 body{
@@ -24,7 +25,6 @@ input{
   color: white;
   font-family: 'Ubuntu', sans-serif;
   font-size: 100%;
-  border-radius: 2px;
 }
 ::-webkit-input-placeholder {
   color: rgba(255,255,255,.1);
@@ -39,26 +39,35 @@ input{
   overflow: hidden;
 }
 .button{
-  background-color: #4fc4f6;
+  background-color: #11a8ab;
   padding: 10px;
-  border-radius: 3px;
-  border: 1px solid #1a4e95;
   text-decoration: none;
   color: white;
 }
 nav{
-  border-radius: 0 0 3px 3px;
-  background-color: #50597b;
   float: right;
-  font-size: 90%;
+  font-size: 150%;
+  margin-top: 50px;
 }
 nav li{
   float: left;
+  background-color: #11a8ab;
   border-right: 1px solid #1f253d;
+  border-bottom: 1px solid #1f253d;
+  opacity: .4;
+}
+nav li.active{
+  opacity: 1;
+  background-color: #394264;
+  border-bottom: 1px solid #394264;
+  font-weight: bold;
+}
+nav li:last-child{
+  border-right: none;
 }
 nav li a{
   display: block;
-  padding: 8px 15px;
+  padding: 10px 20px;
   color: white;
   text-decoration: none;
 }
@@ -68,15 +77,12 @@ nav li a{
 /* module components */
 .module{
   background-color: #394264;
-  border-radius: 3px;
-  margin-top: 50px;
   margin-bottom: 100px;
 }
 .module header{
   background-color: #11a8ab;
   padding: 20px;
   text-align: center;
-  border-radius: 3px 3px 0 0;
 }
 .module footer{
   background-color: #50597b;
