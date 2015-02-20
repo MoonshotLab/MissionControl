@@ -1,11 +1,17 @@
 var createChannel = function(e){
   if(e) e.preventDefault();
 
-  var inputVal = $('#channel-input').val();
-  if(inputVal.indexOf('youtube.com/playlist') == -1)
-    alert('That\'s not a youtube playlist dood');
+  var urlInput = $('#channel-input').val();
+  var validUrls = ['youtube.com/playlist', 'vimeo.com/album'];
+  var urlIsValid = false;
+  validUrls.forEach(function(url){
+    if(urlInput.indexOf(url) != -1) urlIsValid = true;
+  });
+
+  if(!urlIsValid)
+    alert('That\'s not a youtube playlist or a vimeo album dood');
   else{
-    socket.emit('add-channel', { url : inputVal });
+    socket.emit('add-channel', { url : urlInput });
     $('#channel-input').val('');
   }
 };

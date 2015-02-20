@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6, ul, li, p{
   padding: 0;
 }
 a{
-  color: #4fc4f6;
+  color: #37ECF0;
 }
 input{
   background-color: #394264;
@@ -43,6 +43,11 @@ input{
   padding: 10px;
   text-decoration: none;
   color: white;
+  border: 1px solid #2BBFC2;
+}
+.button:hover{
+  background-color: #2BBFC2;
+  border: 1px solid #11a8ab;
 }
 nav{
   float: right;
@@ -195,7 +200,7 @@ nav li a{
 }
 .module.channels footer .button{
   float: left;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-right: 10px;
   position: relative;
   z-index: 2;
@@ -204,14 +209,9 @@ nav li a{
   opacity: .75;
   margin-top: 8px;
   padding-right: 5px;
+  padding-left: 150px;
   font-size: 85%;
   line-height: 170%;
-}
-.module.channels footer span.url{
-  font-style: italic;
-  display: block;
-  font-size: 90%;
-  padding-top: 5px;
 }
 .module.channels a.delete-channel{
   background-color: #e64c65;

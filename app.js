@@ -63,7 +63,7 @@ chromecasts.getEmitter().on('error', function(err){
 // to manipulate the chromecasts
 io.on('connection', function(socket){
 
-  // { url : 'https://someyoutubeplaylist' }
+  // { url : 'https://someYoutubePlalistORvimeoAlbum' }
   socket.on('add-channel', function(opts){
     channels.create(opts.url).then(function(channel){
       io.sockets.emit('new-channel', channel);
