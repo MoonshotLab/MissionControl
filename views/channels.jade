@@ -2,6 +2,8 @@ extends _layout
 
 block head
   script(src='/channels.js')
+  script.
+    var config = !{JSON.stringify(config)}
 
 block content
   .container

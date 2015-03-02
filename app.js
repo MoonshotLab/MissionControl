@@ -2,6 +2,9 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var crypto = require('crypto');
+var config = require('./config')();
+var vimeo = require('./lib/vimeo');
 var port = process.env.PORT || 3000;
 var app = express();
 
@@ -21,12 +24,35 @@ app.get('/', function(req ,res){
   res.render('tvs');
 });
 
+// pass vimeo client id and callback so the client can redirect to vimeo
+// authentication if necessary
 app.get('/channels', function(req ,res){
-  res.render('channels');
+  res.render('channels', {
+    config : {
+      VIMEO_CLIENT_ID     : config.VIMEO_CLIENT_ID,
+      VIMEO_AUTH_CALLBACK : config.VIMEO_AUTH_CALLBACK
+    }
+  });
 });
 
 app.get('/tvs', function(req ,res){
   res.render('tvs');
+});
+
+// deal with vimeo authentication callback and encrypt the token for proper
+// client handling
+app.get('/vimeo-auth-callback', function(req ,res){
+  vimeo.getAccessToken(req.query.code)
+    .then(function(accessToken){
+      var cipher = crypto.createCipher('aes-256-ctr', config.CRYPTO_KEY);
+      var crypted = cipher.update(accessToken, 'utf8', 'hex');
+      crypted += cipher.final('hex');
+
+      res.redirect('/channels?token=' + crypted);
+    })
+    .fail(function(err){
+      console.log(err);
+    });
 });
 
 
@@ -63,10 +89,15 @@ chromecasts.getEmitter().on('error', function(err){
 // to manipulate the chromecasts
 io.on('connection', function(socket){
 
-  // { url : 'https://someYoutubePlalistORvimeoAlbum' }
+  // {
+  //    url   : a youtube paylist url or vimeo album url
+  //    token : optional token if the vimeo album is private
+  // }
   socket.on('add-channel', function(opts){
-    channels.create(opts.url).then(function(channel){
+    channels.create(opts).then(function(channel){
       io.sockets.emit('new-channel', channel);
+    }).fail(function(err){
+      io.sockets.emit('error', err);
     });
   });
 
