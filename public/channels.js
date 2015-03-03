@@ -1,3 +1,6 @@
+var queryParams = {};
+
+
 var isValidUrl = function(url){
   var valid = false;
 
@@ -17,8 +20,29 @@ var createChannel = function(e){
   var urlInput = $('#channel-input').val();
   if(!isValidUrl(urlInput))
     alert('That\'s not a youtube playlist or a vimeo album dood');
-  else
-    socket.emit('add-channel', { url : urlInput });
+  else{
+    // if it's vimeo, we have to submit the token
+    if(urlInput.indexOf('vimeo') != -1){
+      if(queryParams.token)
+        socket.emit('add-channel', { url : urlInput, token : queryParams.token });
+      else redirectAndSaveState();
+    } else
+      socket.emit('add-channel', { url : urlInput });
+  }
+};
+
+
+
+var redirectAndSaveState = function(){
+  var url = $('#channel-input').val();
+  localStorage.setItem('url', url);
+
+  window.location.href = [
+    'https://api.vimeo.com/oauth/authorize?',
+    'response_type=code',
+    '&client_id=' + config.VIMEO_CLIENT_ID,
+    '&redirect_uri=' + config.VIMEO_AUTH_CALLBACK
+  ].join('');
 };
 
 
@@ -52,21 +76,8 @@ socket.on('removed-channel', function(channel){
 
 // just show errors i guess
 socket.on('error', function(err){
-
-  // if a vimeo playlist is not found, try again by requesting an auth token
-  if(err.statusCode == 404){
-    var url = $('#channel-input').val();
-    if(isValidUrl(url)) localStorage.setItem('url', url);
-    window.location.href = [
-      'https://api.vimeo.com/oauth/authorize?',
-      'response_type=code',
-      '&client_id=' + config.VIMEO_CLIENT_ID,
-      '&redirect_uri=' + config.VIMEO_AUTH_CALLBACK
-    ].join('');
-  } else{
-    alert(JSON.stringify(err));
-    console.error(err);
-  }
+  alert(JSON.stringify(err));
+  console.error(err);
 });
 
 
@@ -74,7 +85,6 @@ socket.on('error', function(err){
 $(function(){
   // parse the url query params on page load
   var searchTerms = location.search.replace('?', '').split('&');
-  var queryParams = {};
   searchTerms.forEach(function(term){
     var split = term.split('=');
     queryParams[split[0]] = split[1];

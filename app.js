@@ -91,7 +91,7 @@ io.on('connection', function(socket){
 
   // {
   //    url   : a youtube paylist url or vimeo album url
-  //    token : optional token if the vimeo album is private
+  //    token : mandatory if using vimeo, optional otherwise
   // }
   socket.on('add-channel', function(opts){
     channels.create(opts).then(function(channel){
