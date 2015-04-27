@@ -1,6 +1,34 @@
+// Setup a message hub to listen for messages being sent to the chromecast
+cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.ERROR);
+var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+
+var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.barkley.moonshot.atmosphere');
+messageBus.onMessage = function(e){
+  var data = null;
+  try{
+    data = JSON.parse(e.data);
+    playVideo('youtube', data.videoId);
+  } catch(err){
+    console.log(err);
+  }
+};
+
+
+
+// If we're not doing anything, shuther down
+var appConfig = new cast.receiver.CastReceiverManager.Config();
+appConfig.maxInactivity = 10;
+castReceiverManager.start(appConfig);
+
+
+
 // set a 16x9 aspect ratio
-var playerHeight = $('html').height();
-var playerWidth  = playerHeight * 1.7777;
+var playerHeight = 0;
+var playerWidth  = 0;
+$(function(){
+  playerHeight = $('html').height();
+  playerWidth  = playerHeight * 1.7777;
+});
 
 
 
@@ -8,7 +36,6 @@ var playerWidth  = playerHeight * 1.7777;
 // new videos
 var cleanStage = function(next){
   $('#video-player').remove();
-  $('body').append('<div id="video-player"></div>');
   next();
 };
 
@@ -30,7 +57,7 @@ var playVideo = function(host, id){
 
 var playVimeoVideo = function(id){
   var tag = [
-    '<iframe src="//player.vimeo.com/video/' + id,
+    '<iframe id="video-player" src="//player.vimeo.com/video/' + id,
     '?autoplay=1',
     '&byline=0',
     '&badge=0',
@@ -42,9 +69,9 @@ var playVimeoVideo = function(id){
     '</iframe>'
   ].join('');
 
-  $('#video-player').append(tag);
+  $('body').append(tag);
 
-  var player = $f($('#video-player').find('iframe')[0]);
+  var player = $f($('#video-player')[0]);
   player.addEvent('ready', function(){
     player.addEvent('finish', function(){
       console.log('all done');
@@ -58,6 +85,8 @@ var playVimeoVideo = function(id){
 
 
 var playYoutubeVideo = function(id){
+  $('body').append('<div id="video-player"></div>');
+
   new YT.Player('video-player', {
     height      : playerHeight,
     width       : playerWidth,
