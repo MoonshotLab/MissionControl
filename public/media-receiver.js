@@ -12,8 +12,8 @@ window.player = null;
 
 // Setup a message hub to listen for messages being sent to the chromecast
 cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.ERROR);
-var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
-var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.barkley.moonshot.atmosphere');
+window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+window.messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.barkley.moonshot.atmosphere');
 
 
 
@@ -21,7 +21,7 @@ var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.barkley.m
 //    videoId (optional)  : the video id to load if using the load action
 //    host (required)     : youtube or vimeo
 //    action  (required)  : 'play' || 'pause' || 'load'
-messageBus.onMessage = function(e){
+window.messageBus.onMessage = function(e){
   var data = null;
   try{
     data = JSON.parse(e.data);
@@ -110,10 +110,11 @@ var playVimeoVideo = function(id){
   window.player = $f($('#video-player')[0]);
   window.player.addEvent('ready', function(){
     window.player.addEvent('finish', function(){
-      if(window.DEBUG) console.log('vimeo player done');
-    });
-    window.player.addEvent('playProgress', function(e){
-      if(window.DEBUG) console.log('vimeo player state change', e);
+      window.messageBus.broadcast(JSON.stringify({
+        type    : 'MEDIA_STATUS',
+        status  : 'DONE'
+      }));
+      if(window.DEBUG) console.log('PLAYER STATE: DONE');
     });
   });
 };
@@ -138,7 +139,17 @@ var playYoutubeVideo = function(id){
         e.target.playVideo();
       },
       onStateChange : function(e){
-        if(window.DEBUG) console.log('youtube player state change', e);
+        var playerState = null;
+        for(var key in YT.PlayerState){
+          if(YT.PlayerState[key] == e.data)
+            playerState = key;
+        }
+
+        window.messageBus.broadcast(JSON.stringify({
+          type    : 'MEDIA_STATUS',
+          status  : playerState
+        }));
+        if(window.DEBUG) console.log('PLAYER STATE:', playerState);
       }
     }
   });
