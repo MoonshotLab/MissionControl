@@ -5,6 +5,12 @@ A web based application which allows users to control a series of ChromeCasts vi
 The application must be run on the same network as all ChromeCasts.
 
 
+
+## The Receiver
+Even though the receiver uses multiple video players (and might support additional content types), it uses the YouTube event naming conventions. The receiver produces the foloowing events: `UNSTARTED, ENDED, PLAYING, PAUSED, BUFFERING, CUED`
+
+
+
 ## Environment Variables
 * `DB_CONNECT=mongodb://user:password@location:port/db_name` - A mongo database URL
 * `CRYPTO_KEY` - just some string or whatever you want

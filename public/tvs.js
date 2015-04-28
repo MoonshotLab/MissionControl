@@ -93,8 +93,7 @@ socket.on('removed-channel', function(channel){
   );
 });
 
-// listen for changes on the chromecast, like buffering and
-// new media
+// listen for changes on the chromecast
 socket.on('chromecast-status-update', function(data){
   if(data.status.media && data.status.media.metadata){
     $('#chromecast-' + data.chromecastId)
