@@ -1,3 +1,8 @@
+// add a debug hook so we can easily look at values
+window.DEBUG = true;
+
+
+
 // store the current host and player so we know which API methods to call for
 // each service
 window.currentHost = 'youtube';
@@ -13,21 +18,21 @@ var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.barkley.m
 
 
 // e.data :
-//    videoId (optional) : the video id to load
-//    service (required) : youtube or vimeo
-//    action  (required) : 'play' || 'pause'
+//    videoId (optional)  : the video id to load if using the load action
+//    host (required)     : youtube or vimeo
+//    action  (required)  : 'play' || 'pause' || 'load'
 messageBus.onMessage = function(e){
   var data = null;
   try{
     data = JSON.parse(e.data);
 
-    console.log(data);
+    if(window.DEBUG) console.log(data);
 
-    // handle play and pause events
-    if(data.action == 'play'){
-      // if a video id is passed, assume we're playing a new video
-      if(data.videoId) playVideo(data.service, data.videoId);
-      else if(window.currentHost == 'youtube')
+    // handle load, play, and pause events
+    if(data.action == 'load'){
+      playVideo(data.host, data.videoId);
+    } else if(data.action == 'play'){
+      if(window.currentHost == 'youtube')
         window.player.playVideo();
       else if(window.currentHost == 'vimeo')
         window.player.play();
@@ -105,10 +110,10 @@ var playVimeoVideo = function(id){
   window.player = $f($('#video-player')[0]);
   window.player.addEvent('ready', function(){
     window.player.addEvent('finish', function(){
-      console.log('all done');
+      if(window.DEBUG) console.log('vimeo player done');
     });
-    window.player.addEvent('playProgress', function(data){
-      console.log(data);
+    window.player.addEvent('playProgress', function(e){
+      if(window.DEBUG) console.log('vimeo player state change', e);
     });
   });
 };
@@ -133,7 +138,7 @@ var playYoutubeVideo = function(id){
         e.target.playVideo();
       },
       onStateChange : function(e){
-        console.log('state change', e);
+        if(window.DEBUG) console.log('youtube player state change', e);
       }
     }
   });
