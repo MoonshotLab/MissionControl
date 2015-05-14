@@ -96,13 +96,14 @@ socket.on('removed-channel', function(channel){
 // listen for changes on the chromecast
 socket.on('chromecast-status-update', function(data){
   if(data.type == 'MEDIA-STATUS'){
-    if(data.status.media && data.status.media.metadata){
+    if(data.currentVideo){
       $('#chromecast-' + data.chromecastId)
         .find('.now-playing').find('.value')
-        .text(data.status.media.metadata.title);
+        .text(data.currentVideo.title);
     }
   }
 });
+// chromecast-status-update
 
 // just show errors i guess
 socket.on('error', function(err){
