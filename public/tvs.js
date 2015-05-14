@@ -74,13 +74,21 @@ $(function(){
 });
 
 
+// listen for new chromecasts
+socket.on('new-chromecast', addChromecast);
+
+// remove chromecasts
+socket.on('remove-chromecast', function(chromecast){
+  $('#chromecast-' + chromecast.id).remove();
+});
+
 
 // listen for new channels
 socket.on('new-channel', function(channel){
   channels.push(channel);
 });
 
-//
+// listen for channel changes
 socket.on('change-channel', function(data){
   $('#chromecast-' + data.chromecastId).find('.channel')
     .find('span.title').text(data.channel.title);

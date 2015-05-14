@@ -80,6 +80,12 @@ var io = require('socket.io')(server);
 chromecasts.getEmitter().on('media-status', function(message){
   io.sockets.emit('chromecast-status-update', message);
 });
+chromecasts.getEmitter().on('new-chromecast', function(chromecast){
+  io.sockets.emit('new-chromecast', chromecast);
+});
+chromecasts.getEmitter().on('remove-chromecast', function(chromecast){
+  io.sockets.emit('remove-chromecast', chromecast);
+});
 chromecasts.getEmitter().on('visibility-status', function(message){
   io.sockets.emit('chromecast-status-update', message);
 });
