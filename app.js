@@ -80,6 +80,9 @@ var io = require('socket.io')(server);
 chromecasts.getEmitter().on('media-status', function(message){
   io.sockets.emit('chromecast-status-update', message);
 });
+chromecasts.getEmitter().on('visibility-status', function(message){
+  io.sockets.emit('chromecast-status-update', message);
+});
 chromecasts.getEmitter().on('error', function(err){
   io.sockets.emit('error', err);
 });

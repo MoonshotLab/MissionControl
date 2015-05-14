@@ -154,3 +154,18 @@ var playYoutubeVideo = function(id){
     }
   });
 };
+
+
+
+// let the server know which input the tv is on
+window.messageBus.broadcast(JSON.stringify({
+  type    : 'VISIBILITY',
+  state   : castReceiverManager.getVisibilityState()
+}));
+
+castReceiverManager.onVisibilityChanged = function(a){
+  window.messageBus.broadcast(JSON.stringify({
+    type    : 'VISIBILITY',
+    state   : cast.receiver.system.VisibilityState
+  }));
+};
