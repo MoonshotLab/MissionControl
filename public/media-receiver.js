@@ -112,7 +112,7 @@ var playVimeoVideo = function(id){
     window.player.addEvent('finish', function(){
       window.messageBus.broadcast(JSON.stringify({
         type    : 'MEDIA_STATUS',
-        status  : 'DONE'
+        state   : 'DONE'
       }));
       if(window.DEBUG) console.log('PLAYER STATE: DONE');
     });
@@ -147,7 +147,7 @@ var playYoutubeVideo = function(id){
 
         window.messageBus.broadcast(JSON.stringify({
           type    : 'MEDIA_STATUS',
-          status  : playerState
+          state   : playerState
         }));
         if(window.DEBUG) console.log('PLAYER STATE:', playerState);
       }

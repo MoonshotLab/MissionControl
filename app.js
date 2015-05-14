@@ -77,8 +77,8 @@ var io = require('socket.io')(server);
 
 
 // message from the chromecasts back down to the interface
-chromecasts.getEmitter().on('status-update', function(data){
-  io.sockets.emit('chromecast-status-update', data);
+chromecasts.getEmitter().on('media-status', function(message){
+  io.sockets.emit('chromecast-status-update', message);
 });
 chromecasts.getEmitter().on('error', function(err){
   io.sockets.emit('error', err);
