@@ -184,9 +184,9 @@ nav li a{
   display: inline-block;
   margin-right: 30px;
   font-size: 90%;
-  opacity: .8;
+  opacity: .5;
 }
-.module.chromecasts .controls li:hover{
+.module.chromecasts .controls li:hover, .module.chromecasts .controls li.active{
   opacity: 1;
 }
 

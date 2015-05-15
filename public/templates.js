@@ -89,10 +89,13 @@ templates.chromecastDetails = _.template([
       '</div>',
     '</div>',
     '<ul class="controls">',
-      '<li data-directive="play"><a href="#" class="fa fa-play"></a></li>',
-      '<li data-directive="pause"><a href="#" class="fa fa-pause"></a></li>',
-      '<li data-directive="prev"><a href="#" class="fa fa-step-backward"></a></li>',
-      '<li data-directive="next"><a href="#" class="fa fa-step-forward"></a></li>',
+      "<% var playClass = ''; var pauseClass = '' %>",
+      "<% if(mediaStatus == 'PLAYING') playClass = 'active'; %>",
+      "<% if(mediaStatus == 'PAUSED') pauseClass = 'active'; %>",
+      '<li class="play <%= playClass %>" data-directive="play"><a href="#" class="fa fa-play"></a></li>',
+      '<li class="pause <%= pauseClass %>" data-directive="pause"><a href="#" class="fa fa-pause"></a></li>',
+      '<li class="prev" data-directive="prev"><a href="#" class="fa fa-step-backward"></a></li>',
+      '<li class="next" data-directive="next"><a href="#" class="fa fa-step-forward"></a></li>',
     '</ul>',
   '</li>'
 ].join(''));

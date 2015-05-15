@@ -104,6 +104,18 @@ socket.on('removed-channel', function(channel){
 // listen for changes on the chromecast
 socket.on('chromecast-status-update', function(data){
   if(data.type == 'MEDIA-STATUS'){
+
+    // show if we're playing or paused
+    $('#chromecast-' + data.chromecastId).find('.controls')
+      .find('li').removeClass('active');
+    if(data.status == 'PAUSED'){
+      $('#chromecast-' + data.chromecastId).find('.controls')
+        .find('li.pause').addClass('active');
+    } else if(data.status == 'PLAYING'){
+      $('#chromecast-' + data.chromecastId).find('.controls')
+        .find('li.play').addClass('active');
+    }
+
     if(data.currentVideo){
       $('#chromecast-' + data.chromecastId)
         .find('.now-playing').find('.value')
@@ -111,7 +123,7 @@ socket.on('chromecast-status-update', function(data){
     }
   }
 });
-// chromecast-status-update
+
 
 // just show errors i guess
 socket.on('error', function(err){
