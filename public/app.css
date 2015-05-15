@@ -123,11 +123,7 @@ nav li a{
   padding-bottom: 5px;
   overflow: hidden;
 }
-.meta li.chromecast-name, .meta li.channel-name{
-  font-size: 120%;
-  padding-bottom: 5px;
-  font-weight: bold;
-}
+
 .meta .key{
   opacity: .7;
   padding-right: 20px;
@@ -163,6 +159,11 @@ nav li a{
 }
 .module.chromecasts h2 {
   font-size: 120%;
+}
+.module.chromecasts h3 {
+  font-size: 70%;
+  margin-top: 2px;
+  margin-bottom: 10px;
 }
 .module.chromecasts .info{
   overflow: hidden;
