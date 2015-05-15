@@ -57,7 +57,7 @@ templates.channelSelector = _.template([
 templates.chromecastDetails = _.template([
   '<li class="details" data-chromecast-id="<%= id %>" id="chromecast-<%= id %>">',
     '<div class="connection-status">',
-      '<i class="fa fa-link" />',
+      '<i class="fa fa-eye" title="Chromecast showing on TV" />',
     '</div>',
     '<div class="info">',
       '<div class="channel">',
