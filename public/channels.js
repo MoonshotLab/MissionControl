@@ -19,7 +19,7 @@ var createChannel = function(e){
 
   var urlInput = $('#channel-input').val();
   if(!isValidUrl(urlInput))
-    alert('That\'s not a youtube playlist or a vimeo album dood');
+    alert('That\'s not a youtube playlist dood');
   else{
     // if it's vimeo, we have to submit the token
     if(urlInput.indexOf('vimeo') != -1){
